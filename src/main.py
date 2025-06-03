@@ -4,6 +4,11 @@ Proporciona una gestió bàsica dels paràmetres d'entrada per executar exercici
 o ofereix funcionalitats bàsiques com l'ajuda.
 """
 import sys
+from src.modules.exercici1 import exercici1
+from src.modules.exercici2 import exercici2
+from src.modules.exercici3 import exercici3
+from src.modules.exercici4 import exercici4
+from src.modules.exercici5 import exercici5
 
 def execute_exercise(num: int):
     """
@@ -11,7 +16,18 @@ def execute_exercise(num: int):
     :param num: Número de l'exercici a executar.
     :return:
     """
-    print (f"Execute {num}")
+
+    if num == 1:
+        exercici1.run()
+    elif num == 2:
+        exercici2.run()
+    elif num == 3:
+        exercici3.run()
+    elif num == 4:
+        exercici4.run()
+    elif num == 5:
+        exercici5.run()
+
 
 def execute_exercises(num_from: int, num_to: int):
     """
