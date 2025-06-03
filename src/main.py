@@ -9,6 +9,7 @@ from src.modules.exercici2 import exercici2
 from src.modules.exercici3 import exercici3
 from src.modules.exercici4 import exercici4
 from src.modules.exercici5 import exercici5
+from src.modules.help_info import help_info
 
 def execute_exercise(num: int):
     """
@@ -47,13 +48,6 @@ def show_error(err: str):
     """
     print (f"{err}. Use -h or --help for help")
 
-def show_help():
-    """
-    Mostra un missatge d'ajuda amb les opcions disponibles.
-    :return:
-    """
-    print ("Show Help")
-
 def run(argv: list[str]) -> None:
     """
     Gestiona els paràmetres d'entrada i executa les funcions corresponents.
@@ -61,7 +55,7 @@ def run(argv: list[str]) -> None:
     :return:
     """
     if "-h" in argv or "--help" in argv:
-        show_help()
+        help_info.show_help()
     elif len(argv) > 2 and argv[1] == "-ex":
         ex_num = argv[2]
         if ex_num.isnumeric() and 1 <= int(ex_num) <= 5:
