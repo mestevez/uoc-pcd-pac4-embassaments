@@ -34,6 +34,31 @@ pip install -r requirements.txt -r dev-requirements.txt
 ## Execució
 
 ## Execució dels tests
+Els tests es troben al directori `test`. 
+Aquests es poden executar de manera individual, per una classe determinada:
+```bash
+python -m unittest test/test_main.py
+
+```
+També es poden executar les suites de test. La llista de les suites de test es troba al fitxer `test/suites.py`:
+* suite_exercici1
+* suite_exercici2
+* suite_exercici3
+* suite_exercici4
+* suite_exercici5
+
+La comanda per executar una suite de test és la següent:
+```bash
+python -m unittest test.suites.suite_exercici1
+```
+
+O bé es poden executar tots els tests del directori `test`:
+```bash
+python -m unittest
+```
+
+> Per obtenir una informació més detallada sobre els tests, podeu consultar la documentació de Python.
+> [Més informació](https://docs.python.org/3/library/unittest.html).
 
 ## Documentació
 
