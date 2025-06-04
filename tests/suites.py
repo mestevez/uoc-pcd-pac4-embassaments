@@ -2,11 +2,11 @@
 Definició de les suites de tests
 """
 import unittest
-from test.test_exercici1 import TestExercise1
-from test.test_exercici2 import TestExercise2
-from test.test_exercici3 import TestExercise3
-from test.test_exercici4 import TestExercise4
-from test.test_exercici5 import TestExercise5
+from tests.test_exercici1 import TestExercise1
+from tests.test_exercici2 import TestExercise2
+from tests.test_exercici3 import TestExercise3
+from tests.test_exercici4 import TestExercise4
+from tests.test_exercici5 import TestExercise5
 
 def suite_exercici1():
     """

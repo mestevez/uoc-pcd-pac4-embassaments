@@ -48,18 +48,18 @@ python src/main.py -ex 2
 
 ## Test
 ### Execució dels tests
-Els tests es troben al directori `test`. 
+Els tests es troben al directori `tests`. 
 Aquests es poden executar de manera individual, per una classe determinada:
 ```bash
-python -m unittest test/test_main.py
+python -m unittest tests/test_main.py
 
 ```
 També es poden executar les suites de test disponibles: 
 ```bash
-python -m unittest test.suites.suite_exercici1
+python -m unittest tests.suites.suite_exercici1
 ```
 
-La llista de les suites de test es troba al fitxer `test/suites.py`:
+La llista de les suites de test es troba al fitxer `tests/suites.py`:
 * suite_exercici1
 * suite_exercici2
 * suite_exercici3
