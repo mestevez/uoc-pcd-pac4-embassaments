@@ -33,7 +33,8 @@ pip install -r requirements.txt -r dev-requirements.txt
 
 ## Execució
 
-## Execució dels tests
+## Test
+### Execució dels tests
 Els tests es troben al directori `test`. 
 Aquests es poden executar de manera individual, per una classe determinada:
 ```bash
@@ -59,6 +60,25 @@ python -m unittest
 
 > Per obtenir una informació més detallada sobre els tests, podeu consultar la documentació de Python.
 > [Més informació](https://docs.python.org/3/library/unittest.html).
+
+### Cobertura dels tests
+Per comprovar la cobertura dels tests, s'utilitza `coverage.py`.
+Aquest està inclòs a les dependències de desenvolupament, per tant, si has instal·lat les dependències de desenvolupament, ja el tens instal·lat.
+Per executar-lo, es pot utilitzar qualsevol de les comandes de test mencionades anteriorment, 
+però substituint `python` per `coverage run`. Per exemple:
+```bash
+coverage run -m unittest
+```
+
+Per veure el resultat de la cobertura, s'ha d'executar la següent comanda:
+```bash
+coverage report -m
+```
+
+També es pot generar un informe en format HTML per a una visualització més amigable:
+```bash
+coverage html
+```
 
 ## Documentació
 
