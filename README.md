@@ -32,6 +32,18 @@ pip install -r requirements.txt -r dev-requirements.txt
 ```
 
 ## Execució
+Per executar el projecte, primer cal activar l'entorn virtual (si no ho has fet ja) i després executar el fitxer `main.py`:
+```bash
+python src/main.py
+```
+
+> L'execució sense parametres executarà tots els exercicis de la PAC4.
+
+També es pot executar un exercici concret passant-li el número de l'exercici com a paràmetre:
+```bash
+python src/main.py -ex 2
+```
+> En cas d'indicar un número d'exercici, també s'executaran tots els exercicis previs.
 
 ## Test
 ### Execució dels tests
@@ -63,7 +75,7 @@ python -m unittest
 
 ### Cobertura dels tests
 Per comprovar la cobertura dels tests, s'utilitza `coverage.py`.
-Aquest està inclòs a les dependències de desenvolupament, per tant, si has instal·lat les dependències de desenvolupament, ja el tens instal·lat.
+Aquesta llibreria està inclòsa a les dependències de desenvolupament, per tant, si has instal·lat les dependències de desenvolupament, ja la tens instal·lada.
 Per executar-lo, es pot utilitzar qualsevol de les comandes de test mencionades anteriorment, 
 però substituint `python` per `coverage run`. Per exemple:
 ```bash
