@@ -4,12 +4,12 @@ Proporciona una gestió bàsica dels paràmetres d'entrada per executar exercici
 o ofereix funcionalitats bàsiques com l'ajuda.
 """
 import sys
-from src.modules.exercici1 import exercici1
-from src.modules.exercici2 import exercici2
-from src.modules.exercici3 import exercici3
-from src.modules.exercici4 import exercici4
-from src.modules.exercici5 import exercici5
-from src.modules.help_info import help_info
+from modules.exercici1 import exercici1
+from modules.exercici2 import exercici2
+from modules.exercici3 import exercici3
+from modules.exercici4 import exercici4
+from modules.exercici5 import exercici5
+from modules.help_info import help_info
 
 def execute_exercise(num: int):
     """

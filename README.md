@@ -51,12 +51,12 @@ python src/main.py -ex 2
 Els tests es troben al directori `tests`. 
 Aquests es poden executar de manera individual, per una classe determinada:
 ```bash
-python -m unittest tests/test_main.py
+PYTHONPATH=src python -m unittest tests/test_main.py
 
 ```
 També es poden executar les suites de test disponibles: 
 ```bash
-python -m unittest tests.suites.suite_exercici1
+PYTHONPATH=src python -m unittest tests.suites.suite_exercici1
 ```
 
 La llista de les suites de test es troba al fitxer `tests/suites.py`:
@@ -68,7 +68,7 @@ La llista de les suites de test es troba al fitxer `tests/suites.py`:
 
 Finalment, es poden executar tots els tests del directori `test`:
 ```bash
-python -m unittest
+PYTHONPATH=src python -m unittest
 ```
 
 > Per obtenir una informació més detallada sobre els tests, podeu consultar la documentació de Python.
@@ -80,7 +80,7 @@ Aquesta llibreria està inclòsa a les dependències de desenvolupament, per tan
 Per executar-lo, es pot utilitzar qualsevol de les comandes de test mencionades anteriorment, 
 però substituint `python` per `coverage run`. Per exemple:
 ```bash
-coverage run -m unittest
+PYTHONPATH=src coverage run -m unittest
 ```
 
 Per veure el resultat de la cobertura, s'ha d'executar la següent comanda:
@@ -111,5 +111,5 @@ S'utilitza `pylint` per a fer l'anàlisi estàtica del codi.
 Aquest està inclòs a les dependències de desenvolupament, per tant, si has instal·lat les dependències de desenvolupament, ja el tens instal·lat.
 L'execució de `pylint` es pot fer sobre un fitxer o directori concret. Per exemple:
 ```bash
-pylint src
+PYTHONPATH=src pylint src
 ```

@@ -15,11 +15,11 @@ class TestMain(unittest.TestCase):
         Quan no hi ha paràmetres, s'executen tots els exercicis.
         :return:
         """
-        with patch('src.modules.exercici1.exercici1.run') as mock_run1, \
-             patch('src.modules.exercici2.exercici2.run') as mock_run2, \
-             patch('src.modules.exercici3.exercici3.run') as mock_run3, \
-             patch('src.modules.exercici4.exercici4.run') as mock_run4, \
-             patch('src.modules.exercici5.exercici5.run') as mock_run5:
+        with patch('modules.exercici1.exercici1.run') as mock_run1, \
+             patch('modules.exercici2.exercici2.run') as mock_run2, \
+             patch('modules.exercici3.exercici3.run') as mock_run3, \
+             patch('modules.exercici4.exercici4.run') as mock_run4, \
+             patch('modules.exercici5.exercici5.run') as mock_run5:
             run([])
             self.assertTrue(mock_run1.called)
             self.assertTrue(mock_run2.called)
@@ -32,11 +32,11 @@ class TestMain(unittest.TestCase):
         Quan s'especifica l'exercici 1, només s'executa aquest exercici.
         :return:
         """
-        with patch('src.modules.exercici1.exercici1.run') as mock_run1, \
-             patch('src.modules.exercici2.exercici2.run') as mock_run2, \
-             patch('src.modules.exercici3.exercici3.run') as mock_run3, \
-             patch('src.modules.exercici4.exercici4.run') as mock_run4, \
-             patch('src.modules.exercici5.exercici5.run') as mock_run5:
+        with patch('modules.exercici1.exercici1.run') as mock_run1, \
+             patch('modules.exercici2.exercici2.run') as mock_run2, \
+             patch('modules.exercici3.exercici3.run') as mock_run3, \
+             patch('modules.exercici4.exercici4.run') as mock_run4, \
+             patch('modules.exercici5.exercici5.run') as mock_run5:
             run(['test', '-ex', '1'])
             self.assertTrue(mock_run1.called)
             self.assertFalse(mock_run2.called)
@@ -50,11 +50,11 @@ class TestMain(unittest.TestCase):
         s'executen també tots els anteriors.
         :return:
         """
-        with patch('src.modules.exercici1.exercici1.run') as mock_run1, \
-             patch('src.modules.exercici2.exercici2.run') as mock_run2, \
-             patch('src.modules.exercici3.exercici3.run') as mock_run3, \
-             patch('src.modules.exercici4.exercici4.run') as mock_run4, \
-             patch('src.modules.exercici5.exercici5.run') as mock_run5:
+        with patch('modules.exercici1.exercici1.run') as mock_run1, \
+             patch('modules.exercici2.exercici2.run') as mock_run2, \
+             patch('modules.exercici3.exercici3.run') as mock_run3, \
+             patch('modules.exercici4.exercici4.run') as mock_run4, \
+             patch('modules.exercici5.exercici5.run') as mock_run5:
             run(['test', '-ex', '3'])
             self.assertTrue(mock_run1.called)
             self.assertTrue(mock_run2.called)
@@ -67,11 +67,11 @@ class TestMain(unittest.TestCase):
         Quan s'especifica un numéro d'exercici incorrecte, emet un error.
         :return:
         """
-        with patch('src.modules.exercici1.exercici1.run') as mock_run1, \
-             patch('src.modules.exercici2.exercici2.run') as mock_run2, \
-             patch('src.modules.exercici3.exercici3.run') as mock_run3, \
-             patch('src.modules.exercici4.exercici4.run') as mock_run4, \
-             patch('src.modules.exercici5.exercici5.run') as mock_run5:
+        with patch('modules.exercici1.exercici1.run') as mock_run1, \
+             patch('modules.exercici2.exercici2.run') as mock_run2, \
+             patch('modules.exercici3.exercici3.run') as mock_run3, \
+             patch('modules.exercici4.exercici4.run') as mock_run4, \
+             patch('modules.exercici5.exercici5.run') as mock_run5:
             run(['test', '-ex', 'fake'])
             self.assertFalse(mock_run1.called)
             self.assertFalse(mock_run2.called)
@@ -84,7 +84,7 @@ class TestMain(unittest.TestCase):
         Quan es crida amb el paràmetre -h, es mostra l'ajuda.
         :return:
         """
-        with patch('src.modules.help_info.help_info.show_help') as mock_show_help:
+        with patch('modules.help_info.help_info.show_help') as mock_show_help:
             run(['test', '-h'])
             self.assertTrue(mock_show_help.called)
 
@@ -93,7 +93,7 @@ class TestMain(unittest.TestCase):
         Quan es crida amb el paràmetre --help, es mostra l'ajuda.
         :return:
         """
-        with patch('src.modules.help_info.help_info.show_help') as mock_show_help:
+        with patch('modules.help_info.help_info.show_help') as mock_show_help:
             run(['test', '--help'])
             self.assertTrue(mock_show_help.called)
 
@@ -102,12 +102,12 @@ class TestMain(unittest.TestCase):
         Quan es crida amb el paràmetre --help, es mostra l'ajuda.
         :return:
         """
-        with patch('src.modules.exercici1.exercici1.run') as mock_run1, \
-                patch('src.modules.exercici2.exercici2.run') as mock_run2, \
-                patch('src.modules.exercici3.exercici3.run') as mock_run3, \
-                patch('src.modules.exercici4.exercici4.run') as mock_run4, \
-                patch('src.modules.exercici5.exercici5.run') as mock_run5, \
-                patch('src.modules.help_info.help_info.show_help') as mock_show_help:
+        with patch('modules.exercici1.exercici1.run') as mock_run1, \
+                patch('modules.exercici2.exercici2.run') as mock_run2, \
+                patch('modules.exercici3.exercici3.run') as mock_run3, \
+                patch('modules.exercici4.exercici4.run') as mock_run4, \
+                patch('modules.exercici5.exercici5.run') as mock_run5, \
+                patch('modules.help_info.help_info.show_help') as mock_show_help:
             run(['test', 'fake'])
             self.assertFalse(mock_run1.called)
             self.assertFalse(mock_run2.called)
