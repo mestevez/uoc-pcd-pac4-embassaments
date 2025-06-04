@@ -93,6 +93,8 @@ També es pot generar un informe en format HTML per a una visualització més am
 coverage html
 ```
 
+L'informe de la cobertura es generarà al directori `htmlcov`, i es pot visualitzar obrint el fitxer `index.html` al navegador.
+
 ## Documentació
 Per generar la documentació del projecte, s'utilitza `pdoc`.
 Aquesta llibreria està inclosa a les dependències de desenvolupament, per tant, si has instal·lat les dependències de desenvolupament, ja la tens instal·lada.
