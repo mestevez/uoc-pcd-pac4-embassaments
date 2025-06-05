@@ -4,6 +4,7 @@ Proporciona una gestió bàsica dels paràmetres d'entrada per executar exercici
 o ofereix funcionalitats bàsiques com l'ajuda.
 """
 import sys
+import pandas
 from modules.exercici1 import exercici1
 from modules.exercici2 import exercici2
 from modules.exercici3 import exercici3
@@ -11,23 +12,37 @@ from modules.exercici4 import exercici4
 from modules.exercici5 import exercici5
 from modules.help_info import help_info
 
-def execute_exercise(num: int):
+def verify_dataframe(df: None | pandas.DataFrame) -> pandas.DataFrame:
+    """
+    Verifica si el DataFrame està definit. Si no ho és, llança un error.
+    :param df: DataFrame a verificar.
+    :return: El DataFrame si és vàlid.
+    """
+    if df is None:
+        raise ValueError("DataFrame is not valid. Please run Exercise 1 first.")
+
+    return df
+
+def execute_exercise(num: int, df: None | pandas.DataFrame) -> None | pandas.DataFrame:
     """
     Executa un exercici de la pràctica de forma individual.
     :param num: Número de l'exercici a executar.
+    :param df: DataFrame a utilitzar per als exercicis que ho requereixin.
     :return:
     """
 
     if num == 1:
-        exercici1.run()
+        df = exercici1.run()
     elif num == 2:
-        exercici2.run()
+        df = exercici2.run(verify_dataframe(df))
     elif num == 3:
         exercici3.run()
     elif num == 4:
         exercici4.run()
     elif num == 5:
         exercici5.run()
+
+    return df
 
 
 def execute_exercises(num_from: int, num_to: int):
@@ -37,8 +52,10 @@ def execute_exercises(num_from: int, num_to: int):
     :param num_to: Número final del rang d'exercicis.
     :return:
     """
+    df: None | pandas.DataFrame = None
+
     for num in range(num_from, num_to + 1):
-        execute_exercise(num)
+        df = execute_exercise(num, df)
 
 def show_error(err: str):
     """

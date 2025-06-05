@@ -29,6 +29,3 @@ def run() -> pandas.DataFrame:
     print("\n")
 
     return df
-
-if __name__ == "__main__":
-    run()

@@ -52,8 +52,8 @@ Els tests es troben al directori `tests`.
 Aquests es poden executar de manera individual, per una classe determinada:
 ```bash
 PYTHONPATH=src python -m unittest tests/test_main.py
+``` 
 
-```
 També es poden executar les suites de test disponibles: 
 ```bash
 PYTHONPATH=src python -m unittest tests.suites.suite_exercici1
