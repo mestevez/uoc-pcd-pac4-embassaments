@@ -33,7 +33,7 @@ def run(df: pandas.DataFrame) -> pandas.DataFrame:
         "Percentatge volum embassat (%)": "nivell_perc",
         "Volum embassat (hm3)": "volum"
     })
-    print("\t... Columnes reanomenades amb èxit\n")
+    print(f"\t... Columnes reanomenades amb èxit: {udf.columns.tolist()}\n")
 
     print("2.2 - Mostra els valors únics del nom dels embassaments:")
     print(udf['estacio'].unique())
@@ -42,10 +42,10 @@ def run(df: pandas.DataFrame) -> pandas.DataFrame:
     print("2.3 - Reanomena els embassaments:")
     for swamp_index in range(len(udf)):
         udf.at[swamp_index, 'estacio'] = reformat_swamp_name(udf['estacio'].iloc[swamp_index])
-    print("\t... Embassaments reanomenats amb èxit\n")
+    print(f"\t... Embassaments reanomenats amb èxit: {udf['estacio'].unique()}\n")
 
     print("2.4 - Crea un nou dataframe filtrant per La Baells:")
     udf = udf[udf['estacio'] == "La Baells"]
-    print("\t... Dataframe filtrat amb èxit\n")
+    print(f"\t... Dataframe filtrat amb èxit: len={len(udf)}\n")
 
     return udf
