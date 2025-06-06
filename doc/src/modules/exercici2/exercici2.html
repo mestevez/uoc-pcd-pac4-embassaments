@@ -31,6 +31,9 @@
             <h2>API Documentation</h2>
                 <ul class="memberlist">
             <li>
+                    <a class="function" href="#reformat_swamp_name">reformat_swamp_name</a>
+            </li>
+            <li>
                     <a class="function" href="#run">run</a>
             </li>
     </ul>
@@ -59,45 +62,164 @@
                         <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="sd">Exercici 2: neteja de les dades i filtratge</span>
 </span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">():</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">    Executa l&#39;exercici 2 de la pràctica.</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="sd">    :return:</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing Exercise 2&quot;</span><span class="p">)</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="c1"># Aquí es pot afegir la lògica específica de l&#39;exercici 2</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>    <span class="n">run</span><span class="p">()</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="k">def</span><span class="w"> </span><span class="nf">reformat_swamp_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="sd">    Reanomena els embassaments de manera que &#39;Embassament de Darnius Boadella (Darnius)&#39;</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="sd">    passa a dir-se &#39;Darnius Boadella&#39;.</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="sd">    És a dir, suprimeix &#39;Embassament de &#39; i suprimeix el municipi que està entre parèntesi.</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="sd">    :param name: Nom original de l&#39;embassament.</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">    :return: Nom reformatat de l&#39;embassament.</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>    <span class="n">renamed</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^Embassament\sde\s+([^(]+)\s*(?:\([^)]+\))?\s*$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\1&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>    <span class="k">return</span> <span class="n">renamed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="n">renamed</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># Capitalitza la primera lletra</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="sd">    Executa l&#39;exercici 2 de la pràctica.</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="sd">    :param df: DataFrame a utilitzar per a l&#39;exercici.</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="sd">    :return: DataFrame amb les operacions realitzades.</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing Exercise 2&quot;</span><span class="p">)</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.1 - Reanomenar columnes:&quot;</span><span class="p">)</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>    <span class="n">udf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>        <span class="s2">&quot;Dia&quot;</span><span class="p">:</span> <span class="s2">&quot;dia&quot;</span><span class="p">,</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>        <span class="s2">&quot;Estació&quot;</span><span class="p">:</span><span class="s2">&quot;estacio&quot;</span><span class="p">,</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>        <span class="s2">&quot;Nivell absolut (msnm)&quot;</span><span class="p">:</span><span class="s2">&quot;nivell_msnm&quot;</span><span class="p">,</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>        <span class="s2">&quot;Percentatge volum embassat (%)&quot;</span><span class="p">:</span> <span class="s2">&quot;nivell_perc&quot;</span><span class="p">,</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>        <span class="s2">&quot;Volum embassat (hm3)&quot;</span><span class="p">:</span> <span class="s2">&quot;volum&quot;</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>    <span class="p">})</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">... Columnes reanomenades amb èxit: </span><span class="si">{</span><span class="n">udf</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.2 - Mostra els valors únics del nom dels embassaments:&quot;</span><span class="p">)</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>
+</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.3 - Reanomena els embassaments:&quot;</span><span class="p">)</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>    <span class="k">for</span> <span class="n">swamp_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">udf</span><span class="p">)):</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>        <span class="n">udf</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">swamp_index</span><span class="p">,</span> <span class="s1">&#39;estacio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reformat_swamp_name</span><span class="p">(</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">swamp_index</span><span class="p">])</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">... Embassaments reanomenats amb èxit: </span><span class="si">{</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>
+</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.4 - Crea un nou dataframe filtrant per La Baells:&quot;</span><span class="p">)</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>    <span class="n">udf</span> <span class="o">=</span> <span class="n">udf</span><span class="p">[</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;La Baells&quot;</span><span class="p">]</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">... Dataframe filtrat amb èxit: len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">udf</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>
+</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>    <span class="k">return</span> <span class="n">udf</span>
 </span></pre></div>
 
 
             </section>
+                <section id="reformat_swamp_name">
+                            <input id="reformat_swamp_name-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">reformat_swamp_name</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
+
+                <label class="view-source-button" for="reformat_swamp_name-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#reformat_swamp_name"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="reformat_swamp_name-8"><a href="#reformat_swamp_name-8"><span class="linenos"> 8</span></a><span class="k">def</span><span class="w"> </span><span class="nf">reformat_swamp_name</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="reformat_swamp_name-9"><a href="#reformat_swamp_name-9"><span class="linenos"> 9</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="reformat_swamp_name-10"><a href="#reformat_swamp_name-10"><span class="linenos">10</span></a><span class="sd">    Reanomena els embassaments de manera que &#39;Embassament de Darnius Boadella (Darnius)&#39;</span>
+</span><span id="reformat_swamp_name-11"><a href="#reformat_swamp_name-11"><span class="linenos">11</span></a><span class="sd">    passa a dir-se &#39;Darnius Boadella&#39;.</span>
+</span><span id="reformat_swamp_name-12"><a href="#reformat_swamp_name-12"><span class="linenos">12</span></a><span class="sd">    És a dir, suprimeix &#39;Embassament de &#39; i suprimeix el municipi que està entre parèntesi.</span>
+</span><span id="reformat_swamp_name-13"><a href="#reformat_swamp_name-13"><span class="linenos">13</span></a><span class="sd">    :param name: Nom original de l&#39;embassament.</span>
+</span><span id="reformat_swamp_name-14"><a href="#reformat_swamp_name-14"><span class="linenos">14</span></a><span class="sd">    :return: Nom reformatat de l&#39;embassament.</span>
+</span><span id="reformat_swamp_name-15"><a href="#reformat_swamp_name-15"><span class="linenos">15</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="reformat_swamp_name-16"><a href="#reformat_swamp_name-16"><span class="linenos">16</span></a>    <span class="n">renamed</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^Embassament\sde\s+([^(]+)\s*(?:\([^)]+\))?\s*$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\1&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="reformat_swamp_name-17"><a href="#reformat_swamp_name-17"><span class="linenos">17</span></a>
+</span><span id="reformat_swamp_name-18"><a href="#reformat_swamp_name-18"><span class="linenos">18</span></a>    <span class="k">return</span> <span class="n">renamed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="n">renamed</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># Capitalitza la primera lletra</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Reanomena els embassaments de manera que 'Embassament de Darnius Boadella (Darnius)'
+passa a dir-se 'Darnius Boadella'.
+És a dir, suprimeix 'Embassament de ' i suprimeix el municipi que està entre parèntesi.</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>name</strong>:  Nom original de l'embassament.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>Nom reformatat de l'embassament.</p>
+</blockquote>
+</div>
+
+
+                </section>
                 <section id="run">
                             <input id="run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">df</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span></span><span class="return-annotation">) -> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>:</span></span>
 
                 <label class="view-source-button" for="run-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="run-6"><a href="#run-6"><span class="linenos"> 6</span></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">():</span>
-</span><span id="run-7"><a href="#run-7"><span class="linenos"> 7</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="run-8"><a href="#run-8"><span class="linenos"> 8</span></a><span class="sd">    Executa l&#39;exercici 2 de la pràctica.</span>
-</span><span id="run-9"><a href="#run-9"><span class="linenos"> 9</span></a><span class="sd">    :return:</span>
-</span><span id="run-10"><a href="#run-10"><span class="linenos">10</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="run-11"><a href="#run-11"><span class="linenos">11</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing Exercise 2&quot;</span><span class="p">)</span>
-</span><span id="run-12"><a href="#run-12"><span class="linenos">12</span></a>    <span class="c1"># Aquí es pot afegir la lògica específica de l&#39;exercici 2</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="run-20"><a href="#run-20"><span class="linenos">20</span></a><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+</span><span id="run-21"><a href="#run-21"><span class="linenos">21</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="run-22"><a href="#run-22"><span class="linenos">22</span></a><span class="sd">    Executa l&#39;exercici 2 de la pràctica.</span>
+</span><span id="run-23"><a href="#run-23"><span class="linenos">23</span></a><span class="sd">    :param df: DataFrame a utilitzar per a l&#39;exercici.</span>
+</span><span id="run-24"><a href="#run-24"><span class="linenos">24</span></a><span class="sd">    :return: DataFrame amb les operacions realitzades.</span>
+</span><span id="run-25"><a href="#run-25"><span class="linenos">25</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="run-26"><a href="#run-26"><span class="linenos">26</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+</span><span id="run-27"><a href="#run-27"><span class="linenos">27</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing Exercise 2&quot;</span><span class="p">)</span>
+</span><span id="run-28"><a href="#run-28"><span class="linenos">28</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;======================================&quot;</span><span class="p">)</span>
+</span><span id="run-29"><a href="#run-29"><span class="linenos">29</span></a>
+</span><span id="run-30"><a href="#run-30"><span class="linenos">30</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.1 - Reanomenar columnes:&quot;</span><span class="p">)</span>
+</span><span id="run-31"><a href="#run-31"><span class="linenos">31</span></a>    <span class="n">udf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+</span><span id="run-32"><a href="#run-32"><span class="linenos">32</span></a>        <span class="s2">&quot;Dia&quot;</span><span class="p">:</span> <span class="s2">&quot;dia&quot;</span><span class="p">,</span>
+</span><span id="run-33"><a href="#run-33"><span class="linenos">33</span></a>        <span class="s2">&quot;Estació&quot;</span><span class="p">:</span><span class="s2">&quot;estacio&quot;</span><span class="p">,</span>
+</span><span id="run-34"><a href="#run-34"><span class="linenos">34</span></a>        <span class="s2">&quot;Nivell absolut (msnm)&quot;</span><span class="p">:</span><span class="s2">&quot;nivell_msnm&quot;</span><span class="p">,</span>
+</span><span id="run-35"><a href="#run-35"><span class="linenos">35</span></a>        <span class="s2">&quot;Percentatge volum embassat (%)&quot;</span><span class="p">:</span> <span class="s2">&quot;nivell_perc&quot;</span><span class="p">,</span>
+</span><span id="run-36"><a href="#run-36"><span class="linenos">36</span></a>        <span class="s2">&quot;Volum embassat (hm3)&quot;</span><span class="p">:</span> <span class="s2">&quot;volum&quot;</span>
+</span><span id="run-37"><a href="#run-37"><span class="linenos">37</span></a>    <span class="p">})</span>
+</span><span id="run-38"><a href="#run-38"><span class="linenos">38</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">... Columnes reanomenades amb èxit: </span><span class="si">{</span><span class="n">udf</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="run-39"><a href="#run-39"><span class="linenos">39</span></a>
+</span><span id="run-40"><a href="#run-40"><span class="linenos">40</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.2 - Mostra els valors únics del nom dels embassaments:&quot;</span><span class="p">)</span>
+</span><span id="run-41"><a href="#run-41"><span class="linenos">41</span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</span><span id="run-42"><a href="#run-42"><span class="linenos">42</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="run-43"><a href="#run-43"><span class="linenos">43</span></a>
+</span><span id="run-44"><a href="#run-44"><span class="linenos">44</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.3 - Reanomena els embassaments:&quot;</span><span class="p">)</span>
+</span><span id="run-45"><a href="#run-45"><span class="linenos">45</span></a>    <span class="k">for</span> <span class="n">swamp_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">udf</span><span class="p">)):</span>
+</span><span id="run-46"><a href="#run-46"><span class="linenos">46</span></a>        <span class="n">udf</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">swamp_index</span><span class="p">,</span> <span class="s1">&#39;estacio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reformat_swamp_name</span><span class="p">(</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">swamp_index</span><span class="p">])</span>
+</span><span id="run-47"><a href="#run-47"><span class="linenos">47</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">... Embassaments reanomenats amb èxit: </span><span class="si">{</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="run-48"><a href="#run-48"><span class="linenos">48</span></a>
+</span><span id="run-49"><a href="#run-49"><span class="linenos">49</span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2.4 - Crea un nou dataframe filtrant per La Baells:&quot;</span><span class="p">)</span>
+</span><span id="run-50"><a href="#run-50"><span class="linenos">50</span></a>    <span class="n">udf</span> <span class="o">=</span> <span class="n">udf</span><span class="p">[</span><span class="n">udf</span><span class="p">[</span><span class="s1">&#39;estacio&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;La Baells&quot;</span><span class="p">]</span>
+</span><span id="run-51"><a href="#run-51"><span class="linenos">51</span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">... Dataframe filtrat amb èxit: len=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">udf</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="run-52"><a href="#run-52"><span class="linenos">52</span></a>
+</span><span id="run-53"><a href="#run-53"><span class="linenos">53</span></a>    <span class="k">return</span> <span class="n">udf</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>Executa l'exercici 2 de la pràctica.</p>
 
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>df</strong>:  DataFrame a utilitzar per a l'exercici.</li>
+</ul>
+
 <h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>DataFrame amb les operacions realitzades.</p>
+</blockquote>
 </div>
 
 
