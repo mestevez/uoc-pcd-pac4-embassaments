@@ -2,8 +2,8 @@
 Exercici 3
 """
 from datetime import datetime as dt
-import matplotlib.pyplot as plt
 import time
+import matplotlib.pyplot as plt
 import pandas
 
 def since_epoch(date: pandas.Timestamp | dt) -> float:
