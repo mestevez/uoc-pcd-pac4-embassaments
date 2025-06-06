@@ -36,7 +36,7 @@ def execute_exercise(num: int, df: None | pandas.DataFrame) -> None | pandas.Dat
     elif num == 2:
         df = exercici2.run(verify_dataframe(df))
     elif num == 3:
-        exercici3.run()
+        df = exercici3.run(verify_dataframe(df))
     elif num == 4:
         exercici4.run()
     elif num == 5:

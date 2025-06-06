@@ -19,7 +19,8 @@ def reformat_swamp_name(name: str) -> str:
 def run(df: pandas.DataFrame) -> pandas.DataFrame:
     """
     Executa l'exercici 2 de la pràctica.
-    :return:
+    :param df: DataFrame a utilitzar per a l'exercici.
+    :return: DataFrame amb les operacions realitzades.
     """
     print("======================================")
     print("Executing Exercise 2")

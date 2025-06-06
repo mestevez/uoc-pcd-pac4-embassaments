@@ -6,7 +6,7 @@ import pandas
 def run() -> pandas.DataFrame:
     """
     Executa l'exercici 1 de la pràctica.
-    :return:
+    :return: DataFrame amb el dataset carregat.
     """
     print("======================================")
     print("Executing Exercise 1")

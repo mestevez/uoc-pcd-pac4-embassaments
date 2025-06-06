@@ -110,10 +110,29 @@ class TestMain(unittest.TestCase):
              patch('modules.exercici4.exercici4.run') as mock_run4, \
              patch('modules.exercici5.exercici5.run') as mock_run5:
             mock_run1.return_value = "ex1_df"
+            run(['test', '-ex', '2'])
+            self.assertTrue(mock_run1.called)
+            mock_run2.assert_any_call("ex1_df")
+            self.assertFalse(mock_run3.called)
+            self.assertFalse(mock_run4.called)
+            self.assertFalse(mock_run5.called)
+
+    def test_should_use_dataframe_returned_from_ex2_at_ex3(self):
+        """
+        Quan s'executa l'exercici 3, s'utilitza el DataFrame retornat per l'exercici 2.
+        :return:
+        """
+        with patch('modules.exercici1.exercici1.run') as mock_run1, \
+             patch('modules.exercici2.exercici2.run') as mock_run2, \
+             patch('modules.exercici3.exercici3.run') as mock_run3, \
+             patch('modules.exercici4.exercici4.run') as mock_run4, \
+             patch('modules.exercici5.exercici5.run') as mock_run5:
+            mock_run1.return_value = "ex1_df"
+            mock_run2.return_value = "ex2_df"
             run(['test', '-ex', '3'])
             self.assertTrue(mock_run1.called)
             mock_run2.assert_any_call("ex1_df")
-            self.assertTrue(mock_run3.called)
+            mock_run3.assert_any_call("ex2_df")
             self.assertFalse(mock_run4.called)
             self.assertFalse(mock_run5.called)
 

@@ -101,7 +101,7 @@ Aquesta llibreria està inclosa a les dependències de desenvolupament, per tant
 
 Per generar la documentació, executa la següent comanda:
 ```bash
-pdoc src/** -o ./doc
+PYTHONPATH=src pdoc src/** -o ./doc
 ```
 
 La documentació es generarà al directori `docs`, i es pot visualitzar obrint el fitxer `index.html` al navegador.
