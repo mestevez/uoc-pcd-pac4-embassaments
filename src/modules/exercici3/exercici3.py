@@ -3,6 +3,7 @@ Exercici 3
 """
 from datetime import datetime as dt
 import time
+from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas
 
@@ -32,10 +33,11 @@ def to_year_to_fraction(date: pandas.Timestamp) -> float:
 
     return date.year + fraction
 
-def print_graph(df: pandas.DataFrame, graph_destination: str):
+def print_graph(df: pandas.DataFrame, graph_path: Path):
     """
     Imprimeix una representació gràfica de l'evolució del volum d'aigua.
     :param df: DataFrame amb les dades a representar.
+    :param graph_path: Ruta on es guardarà la gràfica.
     """
     plt.figure(figsize=(7, 5))
     plt.plot(df['dia_decimal'], df['nivell_perc'])
@@ -43,7 +45,7 @@ def print_graph(df: pandas.DataFrame, graph_destination: str):
     plt.title('Marc Estévez Amén')
     plt.xlabel('temps')
     plt.ylabel('percentatge (%)')
-    plt.savefig(graph_destination)
+    plt.savefig(graph_path)
 
 
 def run(df: pandas.DataFrame) -> pandas.DataFrame:
@@ -72,8 +74,8 @@ def run(df: pandas.DataFrame) -> pandas.DataFrame:
     print("\t... Columna dia_decimal creada amb èxit\n")
 
     print("3.4 - Representació gràfica de l'evolució del volum d'aigua:")
-    graph_destination = "screenshots/labaells_marc_estevez_amen.png"
-    print_graph(dfu, graph_destination)
-    print(f"\t... Gràfica generada i guardada a: {graph_destination}\n")
+    graph_path = Path(__file__).parent.parent.parent.parent / "screenshots" / "labaells_marc_estevez_amen.png"
+    print_graph(dfu, graph_path)
+    print(f"\t... Gràfica generada i guardada a: {graph_path}\n")
 
     return dfu

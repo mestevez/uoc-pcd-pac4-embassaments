@@ -1,6 +1,7 @@
 """
 Exercici 4
 """
+from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.signal import savgol_filter
@@ -15,10 +16,11 @@ def smooth_data(df: pd.Series):
     polyorder = min(3, window_length - 1)
     return savgol_filter(df, window_length=window_length, polyorder=polyorder)
 
-def print_graph(df: pd.DataFrame, graph_destination: str):
+def print_graph(df: pd.DataFrame, graph_path: Path):
     """
     Imprimeix una representació gràfica de l'evolució del volum d'aigua amb el gràfic suavitzat.
     :param df: DataFrame amb les dades a representar.
+    :param graph_path: Ruta on es guardarà la gràfica.
     """
     plt.figure(figsize=(7, 5))
     plt.plot(df['dia_decimal'], df['nivell_perc'])
@@ -35,7 +37,7 @@ def print_graph(df: pd.DataFrame, graph_destination: str):
     plt.xlabel('temps')
     plt.ylabel('percentatge (%)')
     plt.legend(loc='lower center')
-    plt.savefig(graph_destination)
+    plt.savefig(graph_path)
 
 def run(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -53,9 +55,9 @@ def run(df: pd.DataFrame) -> pd.DataFrame:
     print("\t... Columna nivell_perc_smooth creada amb èxit\n")
 
     print("4.2 - Representeu gràficament el senyal original amb el senyal suavitzat:")
-    graph_destination = "screenshots/labaells_smoothed_marc_estevez_amen.png"
-    print_graph(dfu, graph_destination)
-    print(f"\t... Gràfica generada i guardada a: {graph_destination}\n")
+    graph_path = Path(__file__).parent.parent.parent.parent / "screenshots" / "labaells_smoothed_marc_estevez_amen.png"
+    print_graph(dfu, graph_path)
+    print(f"\t... Gràfica generada i guardada a: {graph_path}\n")
 
     return dfu
 

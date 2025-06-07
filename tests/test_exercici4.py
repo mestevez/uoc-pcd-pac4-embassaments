@@ -3,6 +3,7 @@ Tests pel codi corresponent a l'exercici 4.
 """
 import unittest
 from unittest.mock import patch
+from pathlib import Path
 import pandas as pd
 from modules.exercici4 import exercici4
 
@@ -120,7 +121,8 @@ class TestExercise4(unittest.TestCase):
         with patch('matplotlib.pyplot.savefig') as mock_pyplot_savefig:
             exercici4.run(self.df)
 
-            mock_pyplot_savefig.assert_called_once_with("screenshots/labaells_smoothed_marc_estevez_amen.png")
+            graph_path = Path(__file__).parent.parent / "screenshots" / "labaells_smoothed_marc_estevez_amen.png"
+            mock_pyplot_savefig.assert_called_once_with(graph_path)
 
 if __name__ == '__main__':
     unittest.main()
