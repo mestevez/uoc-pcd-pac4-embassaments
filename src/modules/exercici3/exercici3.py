@@ -32,7 +32,7 @@ def to_year_to_fraction(date: pandas.Timestamp) -> float:
 
     return date.year + fraction
 
-def print_graph(df: pandas.DataFrame):
+def print_graph(df: pandas.DataFrame, graph_destination: str):
     """
     Imprimeix una representació gràfica de l'evolució del volum d'aigua.
     :param df: DataFrame amb les dades a representar.
@@ -43,7 +43,7 @@ def print_graph(df: pandas.DataFrame):
     plt.title('Marc Estévez Amén')
     plt.xlabel('temps')
     plt.ylabel('percentatge (%)')
-    plt.savefig("screenshots/labaells_marc_estevez_amen.png")
+    plt.savefig(graph_destination)
 
 
 def run(df: pandas.DataFrame) -> pandas.DataFrame:
@@ -72,7 +72,8 @@ def run(df: pandas.DataFrame) -> pandas.DataFrame:
     print("\t... Columna dia_decimal creada amb èxit\n")
 
     print("3.4 - Representació gràfica de l'evolució del volum d'aigua:")
-    print_graph(dfu)
-    print("\t... Gràfica generada amb èxit\n")
+    graph_destination = "screenshots/labaells_marc_estevez_amen.png"
+    print_graph(dfu, graph_destination)
+    print(f"\t... Gràfica generada i guardada a: {graph_destination}\n")
 
     return dfu

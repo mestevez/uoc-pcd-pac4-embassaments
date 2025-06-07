@@ -156,6 +156,27 @@ class TestMain(unittest.TestCase):
             mock_run4.assert_any_call("ex3_df")
             self.assertFalse(mock_run5.called)
 
+    def test_should_use_dataframe_returned_from_ex4_at_ex5(self):
+        """
+        Quan s'executa l'exercici 5, s'utilitza el DataFrame retornat per l'exercici 4.
+        :return:
+        """
+        with patch('modules.exercici1.exercici1.run') as mock_run1, \
+             patch('modules.exercici2.exercici2.run') as mock_run2, \
+             patch('modules.exercici3.exercici3.run') as mock_run3, \
+             patch('modules.exercici4.exercici4.run') as mock_run4, \
+             patch('modules.exercici5.exercici5.run') as mock_run5:
+            mock_run1.return_value = "ex1_df"
+            mock_run2.return_value = "ex2_df"
+            mock_run3.return_value = "ex3_df"
+            mock_run4.return_value = "ex4_df"
+            run(['test', '-ex', '5'])
+            self.assertTrue(mock_run1.called)
+            mock_run2.assert_any_call("ex1_df")
+            mock_run3.assert_any_call("ex2_df")
+            mock_run4.assert_any_call("ex3_df")
+            mock_run5.assert_any_call("ex4_df")
+
     def test_should_not_execute_any_exercise_when_is_an_invalid_value(self):
         """
         Quan s'especifica un numéro d'exercici incorrecte, emet un error.
