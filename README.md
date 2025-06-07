@@ -4,8 +4,32 @@ Grau en Ciència de Dades Aplicada
 Estudis d'Informàtica, Multimèdia i Telecomunicació
 
 ## Descripció
+Aquesta aplicació fa un estudi de les estadistiques de la quantita d'aigua als embassaments de les Conques internes de Catalunya.
+Concretament, mostra l'evolució de la quantitat d'aigua a l'embassament de La Baells, i la seva comparació amb la mitjana dels darrers anys.
 
 ## Estructura del repositori
+El repositori està estructurat de la següent manera:
+```
+.
+├── data
+├── doc
+├── htmlcov
+├── src
+│   ├── main.py
+│   ├── modules
+├── tests
+├── venv
+```
+A l'arrel del repositori es troben els fitxers de configuració i dependències del projecte, com ara `requirements.txt`, `dev-requirements.txt`, `README.md`, `LICENSE`, etc.
+
+El directori `data` conté les dades utilitzades pel projecte, que s'han descarregat del [Portal de dades obertes de la Generalitat](https://analisi.transparenciacatalunya.cat/Medi-Ambient/Quantitat-d-aigua-als-embassaments-de-les-Conques-/gn9e-3qhr/about_data).
+
+El directori `src` conté el codi font del projecte, incloent-hi el fitxer `main.py` que és el punt d'entrada de l'aplicació, i el directori `modules` que conté els mòduls del projecte.
+En aquest cas, el projecte té un mòdul per a cada exercici de la PAC4, anomenat `exercici1`, `exercici2`, etc.
+
+El directori `tests` conté els tests del projecte, organitzats per exercicis i amb una suite de tests per a cada exercici.
+
+El directori `doc` conté la documentació generada del projecte, i el directori `htmlcov` conté els informes de cobertura dels tests. El contingut d'aquests directoris es genera automàticament quan s'executen les comandes de test i documentació, com es veurà més endevant.
 
 ## Instal·lació
 
