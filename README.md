@@ -31,23 +31,35 @@ El directori `tests` conté els tests del projecte, organitzats per exercicis i 
 
 El directori `doc` conté la documentació generada del projecte, i el directori `htmlcov` conté els informes de cobertura dels tests. El contingut d'aquests directoris es genera automàticament quan s'executen les comandes de test i documentació, com es veurà més endevant.
 
+## Requisits
+Per executar aquest projecte, necessites tenir instal·lat Python 3.12 o superior.
+Per altre banda, és recomanable tenir instal·lat pip en la versió 25.0 o superior.
+
 ## Instal·lació
 
 ### Creació de l'entorn virtual
 És recomanable crear un entorn virtual per evitar conflictes amb altres projectes.
 Per això necessites tenir instal·lat `virtualenv`. Si no el tens instal·lat, pots fer-ho amb pip:
 ```bash
-sudo pip install virtualenv
+pip install virtualenv
 ```
 Després, crea un entorn virtual al directori del projecte:
 ```bash
 virtualenv venv
 ```
-I activa l'entorn virtual:
+I activa l'entorn virtual. En Linux o Mac podeu fer-ho amb:
 ```bash
 source venv/bin/activate
 ```
+
+En Windows, l'activació es fa amb:
+```bash
+venv\Scripts\activate.bat
+```
+
 A partir d'aquest moment, ens trobarem dins de l'entorn virtual (observeu que el cursor de la consola canvia per indicar que ens trobem dins de l'entorn venv).
+
+> Es recomenable verificar la versió de python dins de l'entorn virtual amb `python --version`.
 
 ### Instal·lació de les dependències
 Instal·la les dependències del projecte amb pip. 
@@ -76,6 +88,13 @@ Els tests es troben al directori `tests`.
 Aquests es poden executar de manera individual, per una classe determinada:
 ```bash
 PYTHONPATH=src python -m unittest tests/test_main.py
+``` 
+
+> En Windows es pot definir la variable d'entorn `PYTHONPATH`, i després executar les comandes sense indicar-la:
+```bash
+SET PYTHONPATH=src
+
+python -m unittest tests/test_main.py
 ``` 
 
 També es poden executar les suites de test disponibles: 
