@@ -137,3 +137,15 @@ L'execució de `pylint` es pot fer sobre un fitxer o directori concret. Per exem
 ```bash
 PYTHONPATH=src pylint src
 ```
+
+## Generació del codi distribuïble
+Gràcies a la definició del fitxer `setup.py`, es pot generar un paquet distribuïble del projecte.
+Per fer-ho, cal executar la següent comanda:
+```bash
+python setup.py sdist bdist_wheel
+```
+
+Això generarà un paquet distribuïble al directori `dist`, que es pot instal·lar amb pip:
+```bash
+pip install dist/uoc_pcd_pac4_embassaments-0.1.0-py3-none-any.whl
+```
