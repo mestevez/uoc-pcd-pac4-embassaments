@@ -55,9 +55,10 @@ def run(df: pd.DataFrame) -> pd.DataFrame:
     print("\t... Columna nivell_perc_smooth creada amb èxit\n")
 
     print("4.2 - Representeu gràficament el senyal original amb el senyal suavitzat:")
-    graph_path = Path(__file__).parent.parent.parent.parent / "screenshots" / "labaells_smoothed_marc_estevez_amen.png"
+    graph_path = (Path(__file__).parent.parent.parent.parent
+                  / "screenshots"
+                  / "labaells_smoothed_marc_estevez_amen.png")
     print_graph(dfu, graph_path)
     print(f"\t... Gràfica generada i guardada a: {graph_path}\n")
 
     return dfu
-

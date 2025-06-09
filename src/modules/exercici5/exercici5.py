@@ -41,4 +41,3 @@ def run(df: pd.DataFrame):
     print("5.1 - Calcula els períodes de sequera:")
     dry_periods = calcula_periodes(df)
     print(f"Períodes de sequera: {dry_periods}\n")
-

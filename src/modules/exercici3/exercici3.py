@@ -74,7 +74,9 @@ def run(df: pandas.DataFrame) -> pandas.DataFrame:
     print("\t... Columna dia_decimal creada amb èxit\n")
 
     print("3.4 - Representació gràfica de l'evolució del volum d'aigua:")
-    graph_path = Path(__file__).parent.parent.parent.parent / "screenshots" / "labaells_marc_estevez_amen.png"
+    graph_path = (Path(__file__).parent.parent.parent.parent
+                  / "screenshots"
+                  / "labaells_marc_estevez_amen.png")
     print_graph(dfu, graph_path)
     print(f"\t... Gràfica generada i guardada a: {graph_path}\n")
 
